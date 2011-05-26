@@ -19,6 +19,7 @@
 ### HTML
 
 + Remove all other templates except for HTML5
++ Enabled lowercase `doctype` as a valid doctype in **HTML** Language
 
 ### Java
 
@@ -31,6 +32,10 @@
 + Snippets
   - `for` : simplified for loop (modified)
   - `fora` : for loop for iterating over array
+  - `addev` : addEventListener()
+  - `remev` : removeEventListener()
+  - `create` : createElement()
+  - `createf` : createDocumentFragment()
 + **Reformat Documenent / Selection** Command uses two space tabs
 + **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L
 
