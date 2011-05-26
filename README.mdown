@@ -1,3 +1,8 @@
+# TextMate bundles
+
+Custom edits to my TextMate bundles
+
+## Menu changes
 
 + Make **JavaScript** the only selection from Ctrl + Opt + Shift + J menu
 + Make **Markdown** the only selection from Ctrl + Opt + Shift + M menu
