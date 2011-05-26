@@ -31,6 +31,8 @@
 + Snippets
   - `for` : simplified for loop (modified)
   - `fora` : for loop for iterating over array
++ **Reformat Documenent / Selection** Command uses two space tabs
++ **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L
 
 ### Markdown
 
