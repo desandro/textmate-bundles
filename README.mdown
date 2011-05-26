@@ -1,0 +1,11 @@
+
+
+## Java
+
++ Removed **Java** Language from Ctrl + Opt + Shift + J menu
++ Removed **Java Properties** Language from Ctrl + Opt + Shift + J menu
++ Removed **Java Sever Page (JSP)** Language from Ctrl + Opt + Shift + J menu
+
+## Ruby on Rails
+
++ Removed **JavaScript (Rails)** Language from Ctrl + Opt + Shift + J menu
