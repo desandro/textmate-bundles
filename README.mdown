@@ -1,6 +1,10 @@
 
 ## Changes per language
 
+### CSS
+
++ Modified CSS Language to include HTML5 elements and CSS3 properties and values
+
 ### HTML
 
 + Remove all other templates except for HTML5
