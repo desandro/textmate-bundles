@@ -1,4 +1,7 @@
 
+## HTML
+
++ Remove all other templates except for HTML5
 
 ## Java
 
