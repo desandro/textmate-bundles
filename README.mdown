@@ -26,6 +26,12 @@
 + Removed **Java Properties** Language from Ctrl + Opt + Shift + J menu
 + Removed **Java Sever Page (JSP)** Language from Ctrl + Opt + Shift + J menu
 
+### JavaScript
+
++ Snippets
+  - `for` : simplified for loop (modified)
+  - `fora` : for loop for iterating over array
+
 ### Markdown
 
 + Removed **MultiMarkdown** Language from Ctrl + Opt + Shift + M menu
