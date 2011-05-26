@@ -26,8 +26,10 @@ Custom edits to my TextMate bundles
 + Remove all other templates except for HTML5
 + Add **HTML5** Template
 + Enabled lowercase `doctype` as a valid doctype in **HTML** Language
-+ Removed `charset` and `type` attributes from `script` snippets
-+ Removed `type="text/css"` from `style` snippet
++ Snippets
+  - `script` & `scriptsrc` : Removed `charset` and `type` attributes
+  - `style` : Removed `type="text/css"`
+  - `link` : Removed `type="text/css"` and `title`
 
 ### Java
 
