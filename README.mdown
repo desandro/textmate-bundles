@@ -1,7 +1,7 @@
 
 + Make **JavaScript** the only selection from Ctrl + Opt + Shift + J menu
 + Make **Markdown** the only selection from Ctrl + Opt + Shift + M menu
-+ Make **Markdown** the only selection from Ctrl + Opt + Shift + M menu
++ Make **HTML5** the only selection from new file menu (except for Plain Text templates)
 
 ## Changes per language
 
@@ -44,6 +44,14 @@
 
 + Removed **MultiMarkdown** Language from Ctrl + Opt + Shift + M menu
 
+### Python
+
++ Removed templates
+
 ### Ruby on Rails
 
 + Removed **JavaScript (Rails)** Language from Ctrl + Opt + Shift + J menu
+
+### XML
+
++ Removed template
