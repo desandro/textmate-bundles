@@ -1,4 +1,8 @@
 
++ Make **JavaScript** the only selection from Ctrl + Opt + Shift + J menu
++ Make **Markdown** the only selection from Ctrl + Opt + Shift + M menu
++ Make **Markdown** the only selection from Ctrl + Opt + Shift + M menu
+
 ## Changes per language
 
 ### CSS
