@@ -8,6 +8,13 @@
 ### CSS
 
 + Modified CSS Language to include HTML5 elements and CSS3 properties and values
++ Snippets
+  - `-border-radius` : expands to vendor prefixes
+  - `-box-shadow` : expands to vendor prefixes
+  - `hsl`
+  - `hsla`
+  - `-transform` : expands to vendor prefixes
+  - `-transition` : expands to vendor prefixes
 
 ### HTML
 
