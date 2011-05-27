@@ -64,3 +64,4 @@ Custom edits to my TextMate bundles
 ### XML
 
 + Removed template
++ Add **.svg** files to be parsed as XML
