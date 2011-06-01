@@ -46,6 +46,7 @@ Custom edits to my TextMate bundles
   - `remev` : removeEventListener()
   - `create` : createElement()
   - `createf` : createDocumentFragment()
+  - `clog` : console.log()
 + **Reformat Documenent / Selection** Command uses two space tabs
 + **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L
 
