@@ -4,6 +4,17 @@
 <dict>
 	<key>changed</key>
 	<dict>
+		<key>fileTypes</key>
+		<array>
+			<string>js</string>
+			<string>htc</string>
+			<string>jsx</string>
+			<string>iadcomponent</string>
+			<string>iadclass</string>
+			<string>iadaction</string>
+			<string>iadstyle</string>
+			<string>iadpage</string>
+		</array>
 		<key>patterns</key>
 		<array>
 			<dict>
