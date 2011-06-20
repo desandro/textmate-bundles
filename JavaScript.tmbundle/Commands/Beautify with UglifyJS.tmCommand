@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/bin/bash
+
+# requires that you set node path 
+# in TextMate Preferences -&gt; Advanced
+# i.e. /usr/local/lib/node/bin
+
+uglifyjs -b -i 2 -nm -ns "$TM_FILENAME"</string>
+	<key>input</key>
+	<string>none</string>
+	<key>keyEquivalent</key>
+	<string>^~B</string>
+	<key>name</key>
+	<string>Beautify with UglifyJS</string>
+	<key>output</key>
+	<string>replaceDocument</string>
+	<key>scope</key>
+	<string>source.js</string>
+	<key>uuid</key>
+	<string>DB7B84A3-04BC-4F61-8348-07C7DCA2438F</string>
+</dict>
+</plist>

@@ -47,6 +47,9 @@ Custom edits to my TextMate bundles
   - `create` : createElement()
   - `createf` : createDocumentFragment()
   - `clog` : console.log()
++ Commands
+  - **Shift + Ctrl + Opt + U** : Uglify with UglifyJS
+  - **Shift + Ctrl + Opt + B** : Beautify with UglifyJS
 + Language
   - `arguments` : highlighted as a class
 + **Reformat Documenent / Selection** Command uses two space tabs
