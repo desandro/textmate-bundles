@@ -1,6 +1,13 @@
 # TextMate bundles
 
-Custom edits to my TextMate bundles
+Custom edits to the default TextMate bundles.
+
+This repo is solely for my own personal use, so I can sync-up my TextMate Bundles. It's designed to modify the default bundles. Consequently, it's not interoperable, so you can't drag n' drop snippets or language tweaks. Sorry bro :(
+
+But if you'd like to give it a shot, you'll need to put this repo in your Bundles directory. Either download and copy it there, or via the command line:
+
+    $ cd ~/Library/Application Support/TextMate/Bundles
+    $ git clone https://github.com/desandro/textmate-bundles.git
 
 ## Menu changes
 
