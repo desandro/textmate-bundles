@@ -52,6 +52,8 @@ Custom edits to my TextMate bundles
   - **Shift + Ctrl + Opt + B** : Beautify with UglifyJS
 + Language
   - `arguments` : highlighted as a class
+  - `stopPropagation` : highlighted as function
+  - `preventDefault` : highlighted as function
 + **Reformat Documenent / Selection** Command uses two space tabs
 + **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L
 
