@@ -6,8 +6,8 @@ This repo is solely for my own personal use, so I can sync-up my TextMate Bundle
 
 But if you'd like to give it a shot, you'll need to put this repo in your Bundles directory. Either download and copy it there, or via the command line:
 
-    $ cd ~/Library/Application Support/TextMate/Bundles
-    $ git clone https://github.com/desandro/textmate-bundles.git
+    cd ~/Library/Application Support/TextMate/Bundles
+    git clone https://github.com/desandro/textmate-bundles.git
 
 ## Menu changes
 
@@ -30,19 +30,19 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
 
 ### HTML
 
-+ Remove all other templates except for HTML5
-+ Add **HTML5** Template
-+ Enabled lowercase `doctype` as a valid doctype in **HTML** Language
++ Tempates
+  - **HTML5**
+  - Removed all other templates except for HTML5
 + Snippets
   - `script` & `scriptsrc` : Removed `charset` and `type` attributes
   - `style` : Removed `type="text/css"`
   - `link` : Removed `type="text/css"` and `title`
++ Language
+  - Enabled lowercase `doctype` as a valid doctype
 
 ### Java
 
-+ Removed **Java** Language from Ctrl + Opt + Shift + J menu
-+ Removed **Java Properties** Language from Ctrl + Opt + Shift + J menu
-+ Removed **Java Sever Page (JSP)** Language from Ctrl + Opt + Shift + J menu
+- Removed **Java**, **Java Properties**, and **Java Sever Page (JSP)** Language from Ctrl + Opt + Shift + J menu
 
 ### JavaScript
 
@@ -55,14 +55,14 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `createf` : createDocumentFragment()
   - `clog` : console.log()
 + Commands
+  - **Reformat Documenent / Selection** Command uses two space tabs
+  - **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L, so as not to interfere with baller Reformat Document command
   - **Shift + Ctrl + Opt + U** : Uglify with UglifyJS
   - **Shift + Ctrl + Opt + B** : Beautify with UglifyJS
 + Language
   - `arguments` : highlighted as a class
   - `stopPropagation` : highlighted as function
   - `preventDefault` : highlighted as function
-+ **Reformat Documenent / Selection** Command uses two space tabs
-+ **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L
 
 ### Markdown
 
