@@ -60,6 +60,7 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - **Shift + Ctrl + Opt + U** : Uglify with UglifyJS
   - **Shift + Ctrl + Opt + B** : Beautify with UglifyJS
 + Language
+  - `.json` filetype added
   - `arguments` : highlighted as a class
   - `stopPropagation` : highlighted as function
   - `preventDefault` : highlighted as function
