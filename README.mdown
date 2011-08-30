@@ -64,6 +64,7 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `arguments` : highlighted as a class
   - `stopPropagation` : highlighted as function
   - `preventDefault` : highlighted as function
+  - `jQuery` : highlighted as a class
 
 ### Markdown
 
