@@ -5,6 +5,7 @@
 	<key>content</key>
 	<string>-webkit-transition${2}: ${1};
    -moz-transition$2: $1;
+    -ms-transition$2: $1;
      -o-transition$2: $1;
         transition$2: $1;</string>
 	<key>name</key>
