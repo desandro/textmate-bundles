@@ -10,6 +10,10 @@
         $1: $2;</string>
 	<key>name</key>
 	<string>-vendors</string>
+	<key>scope</key>
+	<string>source.css</string>
+	<key>tabTrigger</key>
+	<string>-vendors</string>
 	<key>uuid</key>
 	<string>14EB22C3-5978-4707-B07B-3953722A6051</string>
 </dict>
