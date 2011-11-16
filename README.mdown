@@ -27,6 +27,7 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `hsla`
   - `-transform` : expands to vendor prefixes
   - `-transition` : expands to vendor prefixes
+  - `-vendors` : expands with just the vendor prefixes
 
 ### HTML
 
@@ -54,6 +55,7 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `create` : createElement()
   - `createf` : createDocumentFragment()
   - `clog` : console.log()
+  - `//-` : section comment styling: `// ---------- Title --------- //`
 + Commands
   - **Reformat Documenent / Selection** Command uses two space tabs
   - **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L, so as not to interfere with baller Reformat Document command
