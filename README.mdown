@@ -71,6 +71,7 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
 ### Markdown
 
 + Removed **MultiMarkdown** Language from Ctrl + Opt + Shift + M menu
++ Tweaks to formatting
 
 ### Python
 
