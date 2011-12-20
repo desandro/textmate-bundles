@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>qnir@apyhq.pbz</string>
+	<key>contactName</key>
+	<string>David DeSandro</string>
+	<key>description</key>
+	<string>New shiny bundle for X.
+
+OH yeah!!!</string>
+	<key>name</key>
+	<string>Sunburst DD</string>
+	<key>uuid</key>
+	<string>552D5DBA-BD4D-4616-8E6A-776C0B3D0144</string>
+</dict>
+</plist>
