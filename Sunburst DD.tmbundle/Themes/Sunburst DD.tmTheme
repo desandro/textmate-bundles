@@ -20,11 +20,11 @@
 				<key>foreground</key>
 				<string>#F8F8F8</string>
 				<key>invisibles</key>
-				<string>#06ED2B40</string>
+				<string>#443322</string>
 				<key>lineHighlight</key>
 				<string>#FFFFFF1A</string>
 				<key>selection</key>
-				<string>#C3D4E452</string>
+				<string>#C3D4E466</string>
 			</dict>
 		</dict>
 		<dict>
