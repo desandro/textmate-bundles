@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>// -------------------------- $1 -------------------------- //</string>
+	<string>// ----- $1 ----- //</string>
 	<key>name</key>
-	<string>section comment</string>
+	<string>title comment</string>
 	<key>scope</key>
-	<string>source,js</string>
+	<string>source.js</string>
 	<key>tabTrigger</key>
-	<string>//--</string>
+	<string>//-</string>
 	<key>uuid</key>
-	<string>0380321B-77AE-43AB-8417-2D7274C68112</string>
+	<string>10965D70-D850-48EC-AA53-04E14E1C7152</string>
 </dict>
 </plist>
