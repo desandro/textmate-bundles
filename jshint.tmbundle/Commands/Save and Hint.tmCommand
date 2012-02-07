@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>beforeRunningCommand</key>
+  <string>saveActiveFile</string>
+  <key>command</key>
+  <string>#!/usr/bin/env node
+var env = process.env || process.ENV,
+    jshint = require(env.TM_BUNDLE_SUPPORT + '/jshint-tm');
+
+jshint({
+    es5: true,
+    forin: true,
+    predef: [
+        // CommonJS
+        "exports",
+        "require",
+        "module",
+        // NodeJS
+        "GLOBAL",
+        "process",
+        "__filename",
+        "__dirname"
+    ]
+});</string>
+  <key>input</key>
+  <string>none</string>
+  <key>keyEquivalent</key>
+  <string>@s</string>
+  <key>name</key>
+  <string>Save &amp; Hint</string>
+  <key>output</key>
+  <string>none</string>
+  <key>scope</key>
+  <string>source.js</string>
+  <key>uuid</key>
+  <string>0048A010-05A0-4A0E-BF97-793A3BA4617D</string>
+</dict>
+</plist>
