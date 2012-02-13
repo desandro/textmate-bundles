@@ -56,6 +56,7 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `createf` : createDocumentFragment()
   - `clog` : console.log()
   - `//-` : section comment styling: `// ---------- Title --------- //`
+  - `/**` : JSDoc comment
 + Commands
   - **Reformat Documenent / Selection** Command uses two space tabs
   - **Copy as Bookmarklet to Clipboard** Command changed to Ctrl+Shift+L, so as not to interfere with baller Reformat Document command
