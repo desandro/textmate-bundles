@@ -38,6 +38,7 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `script` & `scriptsrc` : Removed `charset` and `type` attributes
   - `style` : Removed `type="text/css"`
   - `link` : Removed `type="text/css"` and `title`
+  - `html5` : simple HTML5 document
 + Language
   - Enabled lowercase `doctype` as a valid doctype
 
