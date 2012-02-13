@@ -9,12 +9,6 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
     cd ~/Library/Application Support/TextMate/Bundles
     git clone https://github.com/desandro/textmate-bundles.git
 
-## Menu changes
-
-+ Make **JavaScript** the only selection from Ctrl + Opt + Shift + J menu
-+ Make **Markdown** the only selection from Ctrl + Opt + Shift + M menu
-+ Make **HTML5** the only selection from new file menu (except for Plain Text templates)
-
 ## Changes per language
 
 ### CSS
@@ -42,10 +36,6 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
 + Language
   - Enabled lowercase `doctype` as a valid doctype
 
-### Java
-
-- Removed **Java**, **Java Properties**, and **Java Sever Page (JSP)** Language from Ctrl + Opt + Shift + J menu
-
 ### JavaScript
 
 + Snippets
@@ -56,7 +46,8 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `create` : createElement()
   - `createf` : createDocumentFragment()
   - `clog` : console.log()
-  - `//-` : section comment styling: `// ---------- Title --------- //`
+  - `//--` : section comment styling: `// ------------- Section ------------ //`
+  - `//-` : title comment styling: `// ---- Title ---- //`
   - `/**` : JSDoc comment
 + Commands
   - **Reformat Documenent / Selection** Command uses two space tabs
@@ -72,18 +63,5 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
 
 ### Markdown
 
-+ Removed **MultiMarkdown** Language from Ctrl + Opt + Shift + M menu
 + Tweaks to formatting
 
-### Python
-
-+ Removed templates
-
-### Ruby on Rails
-
-+ Removed **JavaScript (Rails)** Language from Ctrl + Opt + Shift + J menu
-
-### XML
-
-+ Removed template
-+ Add **.svg** files to be parsed as XML
