@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>addEventListener( $1, $2, ${3:false})</string>
+	<string>addEventListener( $1, $2, ${3:false} )</string>
 	<key>name</key>
 	<string>addEventListener</string>
 	<key>scope</key>

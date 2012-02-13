@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>for (var ${20:i}=0, len = ${1:Things}.length; ${20:i} &lt; len; ${20:i}++) {
+	<string>for ( var ${20:i}=0, len = ${1:Things}.length; ${20:i} &lt; len; ${20:i}++ ) {
 	${100:${1:Things}[${20:i}]}$0
 }</string>
 	<key>name</key>

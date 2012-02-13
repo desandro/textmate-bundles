@@ -5,12 +5,10 @@
 	<key>changed</key>
 	<dict>
 		<key>content</key>
-		<string>for (var ${20:i}=0; ${20:i} &lt; ${1:10}; ${20:i}++) {
+		<string>for ( var ${20:i}=0; ${20:i} &lt; ${1:10}; ${20:i}++ ) {
 	${100:[${20:i}]}$0
 }</string>
 	</dict>
-	<key>deleted</key>
-	<array/>
 	<key>isDelta</key>
 	<true/>
 	<key>uuid</key>
