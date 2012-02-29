@@ -13,7 +13,7 @@
 	<key>scope</key>
 	<string>source.css</string>
 	<key>tabTrigger</key>
-	<string>trantran</string>
+	<string>-trantran</string>
 	<key>uuid</key>
 	<string>14BA64B5-9FA1-4785-B264-C6F6B7AEAD99</string>
 </dict>
