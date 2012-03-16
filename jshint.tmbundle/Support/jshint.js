@@ -328,6 +328,16 @@ var JSHINT = (function () {
                                 // should be predefined
         },
 
+        // These are the JSHint options that can take any value
+        // (we use this object to detect invalid options)
+        valOptions = {
+            maxlen: false,
+            indent: false,
+            maxerr: false,
+            predef: false
+        },
+
+
         // browser contains a set of global names which are commonly provided by a
         // web browser environment.
         browser = {
@@ -787,6 +797,12 @@ var JSHINT = (function () {
         return Object.prototype.hasOwnProperty.call(object, name);
     }
 
+    function checkOption(name, t) {
+        if (valOptions[name] === undefined && boolOptions[name] === undefined) {
+            warning("Bad option: '" + name + "'.", t);
+        }
+    }
+
 // Provide critical ES5 functions to ES3.
 
     if (typeof Array.isArray !== 'function') {
@@ -1044,9 +1060,9 @@ var JSHINT = (function () {
                 warningAt("Line too long.", line, s.length);
 
             // Check for trailing whitespaces
-            tw = /\s+$/.test(s);
-            if (option.trailing && tw && !/^\s+$/.test(s)) {
-                warningAt("Trailing whitespace.", line, tw);
+            tw = option.trailing && s.match(/^(.*?)\s+$/);
+            if (tw && !/^\s+$/.test(s)) {
+                warningAt("Trailing whitespace.", line, tw[1].length + 1);
             }
             return true;
         }
@@ -1729,6 +1745,7 @@ klass:                                  do {
 
     function doOption() {
         var b, obj, filter, o = nexttoken.value, t, v;
+
         switch (o) {
         case '*/':
             error("Unbegun comment.");
@@ -1752,6 +1769,7 @@ klass:                                  do {
         default:
             error("What?");
         }
+
         t = lex.token();
 loop:   for (;;) {
             for (;;) {
@@ -1767,13 +1785,20 @@ loop:   for (;;) {
                     o !== '/*members') {
                 error("Bad option.", t);
             }
+
             v = lex.token();
             if (v.id === ':') {
                 v = lex.token();
+
                 if (obj === membersOnly) {
                     error("Expected '{a}' and instead saw '{b}'.",
                             t, '*/', ':');
                 }
+
+                if (o === '/*jshint') {
+                    checkOption(t.value, t);
+                }
+
                 if (t.value === 'indent' && (o === '/*jshint' || o === '/*jslint')) {
                     b = +v.value;
                     if (typeof b !== 'number' || !isFinite(b) || b <= 0 ||
@@ -1924,7 +1949,7 @@ loop:   for (;;) {
 // They are elements of the parsing method called Top Down Operator Precedence.
 
     function expression(rbp, initial) {
-        var left, isArray = false;
+        var left, isArray = false, isObject = false;
 
         if (nexttoken.id === '(end)')
             error("Unexpected early end of program.", token);
@@ -1952,9 +1977,12 @@ loop:   for (;;) {
             }
             while (rbp < nexttoken.lbp) {
                 isArray = token.value === 'Array';
+                isObject = token.value === 'Object';
                 advance();
                 if (isArray && token.id === '(' && nexttoken.id === ')')
                     warning("Use the array literal notation [].", token);
+                if (isObject && token.id === '(' && nexttoken.id === ')')
+                    warning("Use the object literal notation {}.", token);
                 if (token.led) {
                     left = token.led(left);
                 } else {
@@ -2970,9 +2998,6 @@ loop:   for (;;) {
             if (c.identifier) {
                 c['new'] = true;
                 switch (c.value) {
-                case 'Object':
-                    warning("Use the object literal notation {}.", token);
-                    break;
                 case 'Number':
                 case 'String':
                 case 'Boolean':
@@ -4121,6 +4146,14 @@ loop:   for (;;) {
         directive = {};
 
         prevtoken = token = nexttoken = syntax['(begin)'];
+
+        // Check options
+        for (var name in o) {
+            if (is_own(o, name)) {
+                checkOption(name, token);
+            }
+        }
+
         assume();
 
         // combine the passed globals after we've assumed all our options
