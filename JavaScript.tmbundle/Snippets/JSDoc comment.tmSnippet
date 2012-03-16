@@ -5,7 +5,7 @@
 	<key>content</key>
 	<string>/**
  * $1
- */</string>
+**/</string>
 	<key>name</key>
 	<string>JSDoc comment</string>
 	<key>scope</key>
