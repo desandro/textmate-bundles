@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>changed</key>
+	<dict>
+		<key>fileTypes</key>
+		<array>
+			<string>rhtml</string>
+			<string>erb</string>
+			<string>html.erb</string>
+			<string>ejs</string>
+		</array>
+	</dict>
+	<key>isDelta</key>
+	<true/>
+	<key>uuid</key>
+	<string>45D7E1FC-7D0B-4105-A1A2-3D10BB555A5C</string>
+</dict>
+</plist>

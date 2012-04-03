@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>/**
- * $1
-**/</string>
+	<string>/* ----------------- $1 ----------------- */</string>
+	<key>disableAutoIndent</key>
+	<false/>
 	<key>name</key>
-	<string>JSDoc comment</string>
+	<string>section title comment</string>
 	<key>scope</key>
-	<string>source.js</string>
+	<string>source.css</string>
 	<key>tabTrigger</key>
-	<string>/**</string>
+	<string>/--</string>
 	<key>uuid</key>
-	<string>6E9745C6-5687-4FBC-B3FC-50A4B2B82221</string>
+	<string>4998E577-A76C-462D-9165-CCE6E0D6EBC4</string>
 </dict>
 </plist>

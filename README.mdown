@@ -22,6 +22,8 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
   - `-transform` : expands to vendor prefixes
   - `-transition` : expands to vendor prefixes
   - `-vendors` : expands with just the vendor prefixes
+  - `/-` : expands to title commment
+  - `/--` : expands to section title comment
 
 ### HTML
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>-webkit-transition${2}: -webkit-transform${1};
+   -moz-transition$2:    -moz-transform$1;
+    -ms-transition$2:     -ms-transform$1;
+     -o-transition$2:      -o-transform$1;
+        transition$2:         transform$1;</string>
+	<key>name</key>
+	<string>-transition -transform</string>
+	<key>scope</key>
+	<string>source.css</string>
+	<key>tabTrigger</key>
+	<string>-trantran</string>
+	<key>uuid</key>
+	<string>14BA64B5-9FA1-4785-B264-C6F6B7AEAD99</string>
+</dict>
+</plist>
