@@ -8,9 +8,9 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
 
 ``` bash
 # TextMate 1
-cd ~/Library/Application Support/TextMate
+cd ~/Library/Application Support/TextMate/
 # TextMate 2
-cd ~/Library/Application Support/Avian/Bundles
+cd ~/Library/Application Support/Avian/
 git clone https://github.com/desandro/textmate-bundles.git Bundles
 ```
 
