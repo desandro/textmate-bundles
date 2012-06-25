@@ -196,12 +196,12 @@
  XPathEvaluator, XPathException, XPathExpression, XPathNamespace, XPathNSResolver, XPathResult,
  "\\", a, addEventListener, address, alert, apply, applicationCache, arguments, arity, asi, atob,
  b, basic, basicToken, bitwise, block, blur, boolOptions, boss, browser, btoa, c, call, callee,
- caller, cases, charAt, charCodeAt, character, clearInterval, clearTimeout,
+ caller, camelcase, cases, charAt, charCodeAt, character, clearInterval, clearTimeout,
  close, closed, closure, comment, condition, confirm, console, constructor,
  content, couch, create, css, curly, d, data, datalist, dd, debug, decodeURI,
  decodeURIComponent, defaultStatus, defineClass, deserialize, devel, document,
  dojo, dijit, dojox, define, else, emit, encodeURI, encodeURIComponent,
- entityify, eqeqeq, eqnull, errors, es5, escape, esnext, eval, event, evidence, evil,
+ entityify, eqeq, eqeqeq, eqnull, errors, es5, escape, esnext, eval, event, evidence, evil,
  ex, exception, exec, exps, expr, exports, FileReader, first, floor, focus,
  forin, fragment, frames, from, fromCharCode, fud, funcscope, funct, function, functions,
  g, gc, getComputedStyle, getRow, getter, getterToken, GLOBAL, global, globals, globalstrict,
@@ -215,7 +215,7 @@
  nonew, nonstandard, nud, onbeforeunload, onblur, onerror, onevar, onecase, onfocus,
  onload, onresize, onunload, open, openDatabase, openURL, opener, opera, options, outer, param,
  parent, parseFloat, parseInt, passfail, plusplus, predef, print, process, prompt,
- proto, prototype, prototypejs, provides, push, quit, range, raw, reach, reason, regexp,
+ proto, prototype, prototypejs, provides, push, quit, quotmark, range, raw, reach, reason, regexp,
  readFile, readUrl, regexdash, removeEventListener, replace, report, require,
  reserved, resizeBy, resizeTo, resolvePath, resumeUpdates, respond, rhino, right,
  runCommand, scroll, screen, scripturl, scrollBy, scrollTo, scrollbar, search, seal,
@@ -223,7 +223,7 @@
  smarttabs, sort, spawn, split, stack, status, start, strict, sub, substr, supernew, shadow,
  supplant, sum, sync, test, toLowerCase, toString, toUpperCase, toint32, token, top, trailing,
  type, typeOf, Uint16Array, Uint32Array, Uint8Array, undef, undefs, unused, urls, validthis,
- value, valueOf, var, version, WebSocket, withstmt, white, window, Worker, wsh*/
+ value, valueOf, var, vars, version, WebSocket, withstmt, white, window, windows, Worker, wsh*/
 
 /*global exports: false */
 
@@ -260,6 +260,7 @@ var JSHINT = (function () {
             bitwise     : true, // if bitwise operators should not be allowed
             boss        : true, // if advanced usage of assignments should be allowed
             browser     : true, // if the standard browser globals should be predefined
+            camelcase   : true, // if identifiers should be required in camel case
             couch       : true, // if CouchDB globals should be predefined
             curly       : true, // if curly braces around all blocks should be required
             debug       : true, // if debugger statements should be allowed
@@ -334,7 +335,33 @@ var JSHINT = (function () {
             maxlen: false,
             indent: false,
             maxerr: false,
-            predef: false
+            predef: false,
+            quotmark: false //'single'|'double'|true
+        },
+
+        // These are JSHint boolean options which are shared with JSLint
+        // where the definition in JSHint is opposite JSLint
+        invertedOptions = {
+            bitwise     : true,
+            forin       : true,
+            newcap      : true,
+            nomen       : true,
+            plusplus    : true,
+            regexp      : true,
+            undef       : true,
+            white       : true,
+
+            // Inverted and renamed, use JSHint name here
+            eqeqeq      : true,
+            onevar      : true
+        },
+
+        // These are JSHint boolean options which are shared with JSLint
+        // where the name has been changed but the effect is unchanged
+        renamedOptions = {
+            eqeq        : "eqeqeq",
+            vars        : "onevar",
+            windows     : "wsh"
         },
 
 
@@ -433,6 +460,8 @@ var JSHINT = (function () {
             moveBy                   :  false,
             moveTo                   :  false,
             name                     :  false,
+            Node                     :  false,
+            NodeFilter               :  false,
             navigator                :  false,
             onbeforeunload           :  true,
             onblur                   :  true,
@@ -655,6 +684,8 @@ var JSHINT = (function () {
             Sound             : false,
             Scriptaculous     : false
         },
+
+        quotmark,
 
         rhino = {
             defineClass  : false,
@@ -1042,10 +1073,11 @@ var JSHINT = (function () {
 
             // If smarttabs option is used check for spaces followed by tabs only.
             // Otherwise check for any occurence of mixed tabs and spaces.
+            // Tabs and one space followed by block comment is allowed.
             if (option.smarttabs)
                 at = s.search(/ \t/);
             else
-                at = s.search(/ \t|\t /);
+                at = s.search(/ \t|\t [^\*]/);
 
             if (at >= 0)
                 warningAt("Mixed spaces and tabs.", line, at + 1);
@@ -1099,6 +1131,10 @@ var JSHINT = (function () {
                             (value !== '__dirname' && value !== '__filename')) {
                         warningAt("Unexpected {a} in '{b}'.", line, from, "dangling '_'", value);
                     }
+                } else if (option.camelcase && value.indexOf('_') > -1 &&
+                        !value.match(/^[A-Z0-9_]*$/)) {
+                    warningAt("Identifier '{a}' is not in camel case.",
+                        line, from, value);
                 }
             }
             t.value = value;
@@ -1188,6 +1224,22 @@ var JSHINT = (function () {
                     if (jsonmode && x !== '"') {
                         warningAt("Strings must use doublequote.",
                                 line, character);
+                    }
+
+                    if (option.quotmark) {
+                        if (option.quotmark === 'single' && x !== "'") {
+                            warningAt("Strings must use singlequote.",
+                                    line, character);
+                        } else if (option.quotmark === 'double' && x !== '"') {
+                            warningAt("Strings must use doublequote.",
+                                    line, character);
+                        } else if (option.quotmark === true) {
+                            quotmark = quotmark || x;
+                            if (quotmark !== x) {
+                                warningAt("Mixed double and single quotes.",
+                                        line, character);
+                            }
+                        }
                     }
 
                     function esc(n) {
@@ -1744,7 +1796,7 @@ klass:                                  do {
 
 
     function doOption() {
-        var b, obj, filter, o = nexttoken.value, t, v;
+        var b, obj, filter, o = nexttoken.value, t, tn, v;
 
         switch (o) {
         case '*/':
@@ -1833,10 +1885,16 @@ loop:   for (;;) {
                         else
                             error("Bad option value.", v);
                     }
-                } else if (v.value === 'true') {
-                    obj[t.value] = true;
-                } else if (v.value === 'false') {
-                    obj[t.value] = false;
+                } else if (v.value === 'true' || v.value === 'false') {
+                    if (o === '/*jslint') {
+                        tn = renamedOptions[t.value] || t.value;
+                        obj[tn] = v.value === 'true';
+                        if (invertedOptions[tn] !== undefined) {
+                            obj[tn] = !obj[tn];
+                        }
+                    } else {
+                        obj[t.value] = v.value === 'true';
+                    }
                 } else {
                     error("Bad option value.", v);
                 }
@@ -1978,6 +2036,25 @@ loop:   for (;;) {
             while (rbp < nexttoken.lbp) {
                 isArray = token.value === 'Array';
                 isObject = token.value === 'Object';
+
+                // #527, new Foo.Array(), Foo.Array(), new Foo.Object(), Foo.Object()
+                // Line breaks in IfStatement heads exist to satisfy the checkJSHint
+                // "Line too long." error.
+                if (left && (left.value || (left.first && left.first.value))) {
+                    // If the left.value is not "new", or the left.first.value is a "."
+                    // then safely assume that this is not "new Array()" and possibly
+                    // not "new Object()"...
+                    if (left.value !== 'new' ||
+                      (left.first && left.first.value && left.first.value === '.')) {
+                        isArray = false;
+                        // ...In the case of Object, if the left.value and token.value
+                        // are not equal, then safely assume that this not "new Object()"
+                        if (left.value !== token.value) {
+                            isObject = false;
+                        }
+                    }
+                }
+
                 advance();
                 if (isArray && token.id === '(' && nexttoken.id === ')')
                     warning("Use the array literal notation [].", token);
@@ -4091,7 +4168,10 @@ loop:   for (;;) {
 // The actual JSHINT function itself.
 
     var itself = function (s, o, g) {
-        var a, i, k;
+        var a, i, k, x,
+            optionKeys,
+            newOptionObj = {};
+
         JSHINT.errors = [];
         JSHINT.undefs = [];
         predefined = Object.create(standard);
@@ -4110,10 +4190,14 @@ loop:   for (;;) {
                     }
                 }
             }
-            option = o;
-        } else {
-            option = {};
+            optionKeys = Object.keys(o);
+            for (x = 0; x < optionKeys.length; x++) {
+                newOptionObj[optionKeys[x]] = o[optionKeys[x]];
+            }
         }
+
+        option = newOptionObj;
+
         option.indent = option.indent || 4;
         option.maxerr = option.maxerr || 50;
 
@@ -4161,6 +4245,7 @@ loop:   for (;;) {
 
         //reset values
         comma.first = true;
+        quotmark = undefined;
 
         try {
             advance();
@@ -4179,7 +4264,7 @@ loop:   for (;;) {
 
                 statements();
             }
-            advance('(end)');
+            advance((nexttoken && nexttoken.value !== '.')  ? '(end)' : undefined);
 
             var markDefined = function (name, context) {
                 do {
