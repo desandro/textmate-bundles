@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>changed</key>
+	<dict>
+		<key>repository.block.repository.raw_block.patterns</key>
+		<array>
+			<dict>
+				<key>begin</key>
+				<string>(^|\G)([ ]{4}|\t)</string>
+				<key>name</key>
+				<string>markup.raw.block.markdown</string>
+				<key>while</key>
+				<string>(^|\G)([ ]{4}|\t)</string>
+			</dict>
+			<dict>
+				<key>begin</key>
+				<string>(^|\G)```</string>
+				<key>end</key>
+				<string>(^|\G)```</string>
+				<key>name</key>
+				<string>markup.raw.block.markdown</string>
+			</dict>
+		</array>
+	</dict>
+	<key>deleted</key>
+	<array>
+		<string>repository.block.repository.raw_block.begin</string>
+		<string>repository.block.repository.raw_block.name</string>
+		<string>repository.block.repository.raw_block.while</string>
+	</array>
+	<key>isDelta</key>
+	<true/>
+	<key>uuid</key>
+	<string>0A1D9874-B448-11D9-BD50-000D93B6E43C</string>
+</dict>
+</plist>
