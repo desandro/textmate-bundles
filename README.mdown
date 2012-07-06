@@ -72,3 +72,7 @@ git clone https://github.com/desandro/textmate-bundles.git Bundles
 
 + Tweaks to formatting
 
+### Text
+
++ Commands
+  - **Opt + Shift + W** : Remove Trailing Spaces in Selection/Document
