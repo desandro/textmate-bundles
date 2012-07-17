@@ -4,6 +4,45 @@
 <dict>
 	<key>changed</key>
 	<dict>
+		<key>repository.block.patterns</key>
+		<array>
+			<dict>
+				<key>include</key>
+				<string>#yaml_front_matter</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#separator</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#heading</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#blockquote</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#lists</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#raw_block</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#link-def</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#html</string>
+			</dict>
+			<dict>
+				<key>include</key>
+				<string>#paragraph</string>
+			</dict>
+		</array>
 		<key>repository.block.repository.raw_block.patterns</key>
 		<array>
 			<dict>
@@ -23,6 +62,27 @@
 				<string>markup.raw.block.markdown</string>
 			</dict>
 		</array>
+		<key>repository.block.repository.yaml_front_matter</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\G---</string>
+					<key>end</key>
+					<string>^---</string>
+					<key>name</key>
+					<string>source.yaml.embedded.markdown</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.yaml</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 	</dict>
 	<key>deleted</key>
 	<array>

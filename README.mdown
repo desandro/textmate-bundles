@@ -70,7 +70,10 @@ git clone https://github.com/desandro/textmate-bundles.git Bundles
 
 ### Markdown
 
-+ Tweaks to formatting
++ Language
+  - YAML front matter syntax highlighted
+  - GitHub triple tick code blocks syntax highlighted
+  - Additional tweaks
 
 ### Text
 
