@@ -75,6 +75,11 @@ git clone https://github.com/desandro/textmate-bundles.git Bundles
   - GitHub triple tick code blocks syntax highlighted
   - Additional tweaks
 
+### Mustache
+
++ Language
+  - Highlight modifer characters `#/^`
+
 ### Text
 
 + Commands
