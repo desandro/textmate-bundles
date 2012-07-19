@@ -14,7 +14,7 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>#000000</string>
+				<string>#0d0d0d</string>
 				<key>caret</key>
 				<string>#A7A7A7</string>
 				<key>foreground</key>
@@ -37,7 +37,7 @@
 				<key>fontStyle</key>
 				<string>italic</string>
 				<key>foreground</key>
-				<string>#4D4D4D</string>
+				<string>#666666</string>
 			</dict>
 		</dict>
 		<dict>
@@ -338,6 +338,19 @@
 				<string></string>
 				<key>foreground</key>
 				<string>#87BDFD</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>✘ Meta.tag.template</string>
+			<key>scope</key>
+			<string>meta.tag.template</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#FFDD88</string>
 			</dict>
 		</dict>
 		<dict>
