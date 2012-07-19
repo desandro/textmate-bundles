@@ -14,13 +14,13 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>#0d0d0d</string>
+				<string>#0D0D0D</string>
 				<key>caret</key>
 				<string>#A7A7A7</string>
 				<key>foreground</key>
 				<string>#F8F8F8</string>
 				<key>invisibles</key>
-				<string>#443322</string>
+				<string>#554433</string>
 				<key>lineHighlight</key>
 				<string>#FFFFFF1A</string>
 				<key>selection</key>
