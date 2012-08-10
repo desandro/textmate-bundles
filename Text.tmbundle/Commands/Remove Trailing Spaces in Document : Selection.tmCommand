@@ -12,7 +12,7 @@ perl -pe 's/[\t ]+$//g'</string>
 		<key>inputFormat</key>
 		<string>text</string>
 		<key>keyEquivalent</key>
-		<string>~W</string>
+		<string>@R</string>
 		<key>outputCaret</key>
 		<string>heuristic</string>
 		<key>outputFormat</key>
