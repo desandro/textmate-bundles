@@ -57,7 +57,7 @@
 				<key>begin</key>
 				<string>(^|\G)```</string>
 				<key>end</key>
-				<string>(^|\G)```</string>
+				<string>(^|\G)([ \t]+)?```</string>
 				<key>name</key>
 				<string>markup.raw.block.markdown</string>
 			</dict>
