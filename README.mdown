@@ -84,3 +84,8 @@ git clone https://github.com/desandro/textmate-bundles.git Bundles
 
 + Commands
   - **Opt + Shift + W** : Remove Trailing Spaces in Selection/Document
+
+## Additional bundles to install seperately
+
++ [Liquid](https://github.com/andrew/liquid-tmbundle)
++ [SCSS](https://github.com/kuroir/SCSS.tmbundle)
