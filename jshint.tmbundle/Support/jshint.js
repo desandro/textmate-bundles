@@ -149,9 +149,10 @@
 */
 
 /*members "\b", "\t", "\n", "\f", "\r", "!=", "!==", "\"", "%", "(begin)",
- "(breakage)", "(character)", "(context)", "(error)", "(global)", "(identifier)", "(last)",
- "(lastcharacter)", "(line)", "(loopage)", "(name)", "(onevar)", "(params)", "(scope)",
- "(statement)", "(verb)", "(tokens)", "*", "+", "++", "-", "--", "\/", "<", "<=", "==",
+ "(breakage)", "(character)", "(context)", "(error)", "(explicitNewcap)", "(global)",
+ "(identifier)", "(last)", "(lastcharacter)", "(line)", "(loopage)", "(name)",
+ "(onevar)", "(params)", "(scope)", "(statement)", "(verb)", "(tokens)",
+ "*", "+", "++", "-", "--", "\/", "<", "<=", "==",
  "===", ">", ">=", $, $$, $A, $F, $H, $R, $break, $continue, $w, Abstract, Ajax,
  __filename, __dirname, ActiveXObject, Array, ArrayBuffer, ArrayBufferView, Audio,
  Autocompleter, Assets, Boolean, Builder, Buffer, Browser, COM, CScript, Canvas,
@@ -189,10 +190,10 @@
  VBArray, WSH, WScript, XDomainRequest, Web, Window, XMLDOM, XMLHttpRequest, XMLSerializer,
  XPathEvaluator, XPathException, XPathExpression, XPathNamespace, XPathNSResolver, XPathResult,
  "\\", a, addEventListener, address, alert, apply, applicationCache, arguments, arity,
- asi, atob, b, basic, basicToken, bitwise, block, blur, boolOptions, boss, browser, btoa, c,
- call, callee, caller, camelcase, cases, charAt, charCodeAt, character, clearInterval,
- clearTimeout, close, closed, closure, comment, condition, confirm, console, constructor,
- content, couch, create, css, curly, d, data, datalist, dd, debug, decodeURI,
+ asi, atob, b, basic, basicToken, bitwise, blacklist, block, blur, boolOptions, boss,
+ browser, btoa, c, call, callee, caller, camelcase, cases, charAt, charCodeAt, character,
+ clearInterval, clearTimeout, close, closed, closure, comment, condition, confirm, console,
+ constructor, content, couch, create, css, curly, d, data, datalist, dd, debug, decodeURI,
  decodeURIComponent, defaultStatus, defineClass, deserialize, devel, document,
  dojo, dijit, dojox, define, else, emit, encodeURI, encodeURIComponent,
  eqeq, eqeqeq, eqnull, errors, es5, escape, esnext, eval, event, evidence, evil,
@@ -208,7 +209,7 @@
  moveTo, mootools, multistr, name, navigator, new, newcap, noarg, node, noempty, nomen,
  nonew, nonstandard, nud, onbeforeunload, onblur, onerror, onevar, onecase, onfocus,
  onload, onresize, onunload, open, openDatabase, openURL, opener, opera, options, outer, param,
- parent, parseFloat, parseInt, passfail, plusplus, postMessage, predef, print, process, prompt,
+ parent, parseFloat, parseInt, passfail, plusplus, postMessage, pop, predef, print, process, prompt,
  proto, prototype, prototypejs, provides, push, quit, quotmark, range, raw, reach, reason, regexp,
  readFile, readUrl, regexdash, removeEventListener, replace, report, require,
  reserved, resizeBy, resizeTo, resolvePath, resumeUpdates, respond, rhino, right,
@@ -743,6 +744,7 @@ var JSHINT = (function () {
         syntax = {},
         tab,
         token,
+        unuseds,
         urls,
         useESNextSyntax,
         warnings,
@@ -874,10 +876,16 @@ var JSHINT = (function () {
     function combine(t, o) {
         var n;
         for (n in o) {
-            if (is_own(o, n)) {
+            if (is_own(o, n) && !is_own(JSHINT.blacklist, n)) {
                 t[n] = o[n];
             }
         }
+    }
+
+    function updatePredefined() {
+        Object.keys(JSHINT.blacklist).forEach(function (key) {
+            delete predefined[key];
+        });
     }
 
     function assume() {
@@ -1744,7 +1752,6 @@ klass:                                  do {
 
 
     function addlabel(t, type, token) {
-
         if (t === "hasOwnProperty") {
             warning("'hasOwnProperty' is a really bad name.");
         }
@@ -1784,7 +1791,7 @@ klass:                                  do {
         var o  = nt.value;
         var quotmarkValue = option.quotmark;
         var predef = {};
-        var b, obj, filter, t, tn, v;
+        var b, obj, filter, t, tn, v, minus;
 
         switch (o) {
         case "*/":
@@ -1813,6 +1820,7 @@ klass:                                  do {
 
         t = lex.token();
 loop:   for (;;) {
+            minus = false;
             for (;;) {
                 if (t.type === "special" && t.value === "*/") {
                     break loop;
@@ -1822,8 +1830,13 @@ loop:   for (;;) {
                 }
                 t = lex.token();
             }
-            if (t.type !== "(string)" && t.type !== "(identifier)" &&
-                    o !== "/*members") {
+
+            if (o === "/*global" && t.value === "-") {
+                minus = true;
+                t = lex.token();
+            }
+
+            if (t.type !== "(string)" && t.type !== "(identifier)" && o !== "/*members") {
                 error("Bad option.", t);
             }
 
@@ -1898,6 +1911,9 @@ loop:   for (;;) {
                     } else {
                         obj[t.value] = v.value === "true";
                     }
+
+                    if (t.value === "newcap")
+                        obj["(explicitNewcap)"] = true;
                 } else {
                     error("Bad option value.", v);
                 }
@@ -1906,7 +1922,14 @@ loop:   for (;;) {
                 if (o === "/*jshint" || o === "/*jslint") {
                     error("Missing option value.", t);
                 }
+
                 obj[t.value] = false;
+
+                if (o === "/*global" && minus === true) {
+                    JSHINT.blacklist[t.value] = t.value;
+                    updatePredefined();
+                }
+
                 t = v;
             }
         }
@@ -2339,18 +2362,22 @@ loop:   for (;;) {
 
     function assignop(s) {
         symbol(s, 20).exps = true;
+
         return infix(s, function (left, that) {
             that.left = left;
+
             if (predefined[left.value] === false &&
                     scope[left.value]["(global)"] === true) {
                 warning("Read only.", left);
             } else if (left["function"]) {
                 warning("'{a}' is a function.", left, left.value);
             }
+
             if (left) {
                 if (option.esnext && funct[left.value] === "const") {
                     warning("Attempting to override '{a}' which is a constant", left, left.value);
                 }
+
                 if (left.id === "." || left.id === "[") {
                     if (!left.left || left.left.value === "arguments") {
                         warning("Bad assignment.", that);
@@ -2364,12 +2391,14 @@ loop:   for (;;) {
                     that.right = expression(19);
                     return that;
                 }
+
                 if (left === syntax["function"]) {
                     warning(
 "Expected an identifier in an assignment and instead saw a function invocation.",
                                 token);
                 }
             }
+
             error("Bad assignment.", that);
         }, 20);
     }
@@ -2501,26 +2530,34 @@ loop:   for (;;) {
             return;
         }
 
-// Is this a labelled statement?
+        // Is this a labelled statement?
 
         if (t.identifier && !t.reserved && peek().id === ":") {
             advance();
             advance(":");
             scope = Object.create(s);
             addlabel(t.value, "label");
-            if (!nexttoken.labelled) {
-                warning("Label '{a}' on {b} statement.",
-                        nexttoken, t.value, nexttoken.value);
+
+            if (!nexttoken.labelled && nexttoken.value !== "{") {
+                warning("Label '{a}' on {b} statement.", nexttoken, t.value, nexttoken.value);
             }
+
             if (jx.test(t.value + ":")) {
-                warning("Label '{a}' looks like a javascript url.",
-                        t, t.value);
+                warning("Label '{a}' looks like a javascript url.", t, t.value);
             }
+
             nexttoken.label = t.value;
             t = nexttoken;
         }
 
-// Parse the statement.
+        // Is it a lonely block?
+
+        if (t.id === "{") {
+            block(true, true);
+            return;
+        }
+
+        // Parse the statement.
 
         if (!noindent) {
             indentation();
@@ -2528,12 +2565,13 @@ loop:   for (;;) {
         r = expression(0, true);
 
         // Look for the final semicolon.
+
         if (!t.block) {
             if (!option.expr && (!r || !r.exps)) {
                 warning("Expected an assignment or function call and instead saw an expression.",
                     token);
             } else if (option.nonew && r.id === "(" && r.left.id === "new") {
-                warning("Do not use 'new' for side effects.");
+                warning("Do not use 'new' for side effects.", t);
             }
 
             if (nexttoken.id === ",") {
@@ -2625,7 +2663,8 @@ loop:   for (;;) {
                 }
 
                 if (token.value === "use strict") {
-                    option.newcap = true;
+                    if (!option["(explicitNewcap)"])
+                        option.newcap = true;
                     option.undef = true;
                 }
 
@@ -3098,7 +3137,7 @@ loop:   for (;;) {
                 case "Boolean":
                 case "Math":
                 case "JSON":
-                    warning("Do not use {a} as a constructor.", token, c.value);
+                    warning("Do not use {a} as a constructor.", prevtoken, c.value);
                     break;
                 case "Function":
                     if (!option.evil) {
@@ -3204,7 +3243,7 @@ loop:   for (;;) {
         nospace(prevtoken, token);
         if (typeof left === "object") {
             if (left.value === "parseInt" && n === 1) {
-                warning("Missing radix parameter.", left);
+                warning("Missing radix parameter.", token);
             }
             if (!option.evil) {
                 if (left.value === "eval" || left.value === "Function" ||
@@ -3236,16 +3275,14 @@ loop:   for (;;) {
         advance(")", this);
         nospace(prevtoken, token);
         if (option.immed && v.id === "function") {
-            if (nexttoken.id === "(" ||
-              (nexttoken.id === "." && (peek().value === "call" || peek().value === "apply"))) {
-                warning(
-"Move the invocation into the parens that contain the function.", nexttoken);
-            } else {
+            if (nexttoken.id !== "(" &&
+              (nexttoken.id !== "." || (peek().value !== "call" && peek().value !== "apply"))) {
                 warning(
 "Do not wrap function literals in parens unless they are to be immediately invoked.",
                         this);
             }
         }
+
         return v;
     });
 
@@ -3262,7 +3299,7 @@ loop:   for (;;) {
                 s = syntax[e.value];
                 if (!s || !s.reserved) {
                     warning("['{a}'] is better written in dot notation.",
-                            e, e.value);
+                            prevtoken, e.value);
                 }
             }
         }
@@ -3329,23 +3366,28 @@ loop:   for (;;) {
 
 
     function functionparams() {
-        var i, t = nexttoken, p = [];
+        var next   = nexttoken;
+        var params = [];
+        var ident;
+
         advance("(");
         nospace();
+
         if (nexttoken.id === ")") {
             advance(")");
             return;
         }
+
         for (;;) {
-            i = identifier(true);
-            p.push(i);
-            addlabel(i, "unused", token);
+            ident = identifier(true);
+            params.push(ident);
+            addlabel(ident, "unused", token);
             if (nexttoken.id === ",") {
                 comma();
             } else {
-                advance(")", t);
+                advance(")", next);
                 nospace(prevtoken, token);
-                return p;
+                return params;
             }
         }
     }
@@ -4204,43 +4246,34 @@ loop:   for (;;) {
 
         JSHINT.errors = [];
         JSHINT.undefs = [];
+        JSHINT.blacklist = {};
 
         predefined = Object.create(standard);
         declared = Object.create(null);
         combine(predefined, g || {});
 
-        if (!isString(s) && !Array.isArray(s)) {
-            errorAt("Input is neither a string nor an array of strings.", 0);
-            return false;
-        }
-
-        if (isString(s) && /^\s*$/g.test(s)) {
-            errorAt("Input is an empty string.", 0);
-            return false;
-        }
-
-        if (s.length === 0) {
-            errorAt("Input is an empty array.", 0);
-            return false;
-        }
-
         if (o) {
             a = o.predef;
             if (a) {
-                if (Array.isArray(a)) {
-                    for (i = 0; i < a.length; i += 1) {
-                        predefined[a[i]] = true;
-                    }
-                } else if (typeof a === "object") {
-                    k = Object.keys(a);
-                    for (i = 0; i < k.length; i += 1) {
-                        predefined[k[i]] = !!a[k[i]];
-                    }
+                if (!Array.isArray(a) && typeof a === "object") {
+                    a = Object.keys(a);
                 }
+                a.forEach(function (item) {
+                    var slice;
+                    if (item[0] === "-") {
+                        slice = item.slice(1);
+                        JSHINT.blacklist[slice] = slice;
+                    } else {
+                        predefined[item] = true;
+                    }
+                });
             }
             optionKeys = Object.keys(o);
             for (x = 0; x < optionKeys.length; x++) {
                 newOptionObj[optionKeys[x]] = o[optionKeys[x]];
+
+                if (optionKeys[x] === "newcap" && o[optionKeys[x]] === false)
+                    newOptionObj["(explicitNewcap)"] = true;
             }
         }
 
@@ -4274,7 +4307,26 @@ loop:   for (;;) {
         lookahead = [];
         jsonmode = false;
         warnings = 0;
+        lines = [];
+        unuseds = [];
+
+        if (!isString(s) && !Array.isArray(s)) {
+            errorAt("Input is neither a string nor an array of strings.", 0);
+            return false;
+        }
+
+        if (isString(s) && /^\s*$/g.test(s)) {
+            errorAt("Input is an empty string.", 0);
+            return false;
+        }
+
+        if (s.length === 0) {
+            errorAt("Input is an empty array.", 0);
+            return false;
+        }
+
         lex.init(s);
+
         prereg = true;
         directive = {};
 
@@ -4354,6 +4406,20 @@ loop:   for (;;) {
                     implied[name] = newImplied;
             };
 
+            var warnUnused = function (name, token) {
+                var line = token.line;
+                var chr  = token.character;
+
+                if (option.unused)
+                    warningAt("'{a}' is defined but never used.", line, chr, name);
+
+                unuseds.push({
+                    name: name,
+                    line: line,
+                    character: chr
+                });
+            };
+
             var checkUnused = function (func, key) {
                 var type = func[key];
                 var token = func["(tokens)"][key];
@@ -4361,16 +4427,14 @@ loop:   for (;;) {
                 if (key.charAt(0) === "(")
                     return;
 
-                // 'undefined' is a special case for (function (window, undefined) { ... })();
-                // patterns.
-
-                if (key === "undefined")
-                    return;
-
                 if (type !== "unused" && type !== "unction")
                     return;
 
-                warningAt("'{a}' is defined but never used.", token.line, token.character, key);
+                // Params are checked separately from other variables.
+                if (func["(params)"] && func["(params)"].indexOf(key) !== -1)
+                    return;
+
+                warnUnused(key, token);
             };
 
             // Check queued 'x is not defined' instances to see if they're still undefined.
@@ -4384,22 +4448,40 @@ loop:   for (;;) {
                 }
             }
 
-            if (option.unused) {
-                functions.forEach(function (func) {
-                    for (var key in func) {
-                        if (is_own(func, key)) {
-                            checkUnused(func, key);
-                        }
+            functions.forEach(function (func) {
+                for (var key in func) {
+                    if (is_own(func, key)) {
+                        checkUnused(func, key);
                     }
-                });
+                }
 
-                for (var key in declared) {
-                    if (is_own(declared, key)) {
-                        if (!is_own(global, key)) {
-                            warningAt("'{a}' is defined but never used.",
-                                declared[key].line, declared[key].character, key);
-                        }
-                    }
+                if (!func["(params)"])
+                    return;
+
+                var params = func["(params)"].slice();
+                var param  = params.pop();
+                var type;
+
+                while (param) {
+                    type = func[param];
+
+                    // 'undefined' is a special case for (function (window, undefined) { ... })();
+                    // patterns.
+
+                    if (param === "undefined")
+                        return;
+
+                    if (type !== "unused" && type !== "unction")
+                        return;
+
+                    warnUnused(param, func["(tokens)"][param]);
+                    param = params.pop();
+                }
+            });
+
+            for (var key in declared) {
+                if (is_own(declared, key) && !is_own(global, key)) {
+                    warnUnused(key, declared[key]);
                 }
             }
         } catch (e) {
@@ -4425,8 +4507,7 @@ loop:   for (;;) {
         };
         var implieds = [];
         var members = [];
-        var unused = [];
-        var fu, f, i, j, n, v, globals;
+        var fu, f, i, j, n, globals;
 
         if (itself.errors.length) {
             data.errors = itself.errors;
@@ -4466,28 +4547,6 @@ loop:   for (;;) {
                 fu[functionicity[j]] = [];
             }
 
-            for (n in f) {
-                if (is_own(f, n) && n.charAt(0) !== "(") {
-                    v = f[n];
-
-                    if (v === "unction") {
-                        v = "unused";
-                    }
-
-                    if (Array.isArray(fu[v])) {
-                        fu[v].push(n);
-
-                        if (v === "unused") {
-                            unused.push({
-                                name: n,
-                                line: f["(line)"],
-                                "function": f["(name)"]
-                            });
-                        }
-                    }
-                }
-            }
-
             for (j = 0; j < functionicity.length; j += 1) {
                 if (fu[functionicity[j]].length === 0) {
                     delete fu[functionicity[j]];
@@ -4503,8 +4562,8 @@ loop:   for (;;) {
             data.functions.push(fu);
         }
 
-        if (unused.length > 0) {
-            data.unused = unused;
+        if (unuseds.length > 0) {
+            data.unused = unuseds;
         }
 
         members = [];
