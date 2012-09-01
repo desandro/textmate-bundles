@@ -14,13 +14,13 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>#000000</string>
+				<string>#0D0D0D</string>
 				<key>caret</key>
 				<string>#A7A7A7</string>
 				<key>foreground</key>
 				<string>#F8F8F8</string>
 				<key>invisibles</key>
-				<string>#443322</string>
+				<string>#554433</string>
 				<key>lineHighlight</key>
 				<string>#FFFFFF1A</string>
 				<key>selection</key>
@@ -37,7 +37,7 @@
 				<key>fontStyle</key>
 				<string>italic</string>
 				<key>foreground</key>
-				<string>#4D4D4D</string>
+				<string>#666666</string>
 			</dict>
 		</dict>
 		<dict>
@@ -185,6 +185,17 @@
 				<string>italic</string>
 				<key>foreground</key>
 				<string>#9B5C2E</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>♦ Entity name.attribute-name</string>
+			<key>scope</key>
+			<string>entity.name.attribute-name</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#CB5C2E</string>
 			</dict>
 		</dict>
 		<dict>
@@ -338,6 +349,32 @@
 				<string></string>
 				<key>foreground</key>
 				<string>#87BDFD</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>✘ Meta.tag.template</string>
+			<key>scope</key>
+			<string>meta.tag.template</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#EECC88</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>{{Mustaches}} Entity.name.tag.mustache</string>
+			<key>scope</key>
+			<string>entity.name.tag.mustache</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#FFEE33</string>
 			</dict>
 		</dict>
 		<dict>

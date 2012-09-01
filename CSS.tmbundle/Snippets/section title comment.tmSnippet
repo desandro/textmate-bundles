@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>/* ----------------- $1 ----------------- */</string>
+	<string>/* $1
+------------------------- */
+</string>
 	<key>disableAutoIndent</key>
 	<false/>
 	<key>name</key>

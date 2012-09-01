@@ -1,3 +1,6 @@
 [submodule "Jade.tmbundle"]
 	path = Jade.tmbundle
 	url = https://github.com/miksago/jade-tmbundle.git
+[submodule "SCSS.tmbundle"]
+	path = SCSS.tmbundle
+	url = https://github.com/kuroir/SCSS.tmbundle.git

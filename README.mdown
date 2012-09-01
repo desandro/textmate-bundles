@@ -6,8 +6,13 @@ This repo is solely for my own personal use, so I can sync-up my TextMate Bundle
 
 But if you'd like to give it a shot, you'll need to put this repo in your Bundles directory. Either download and copy it there, or via the command line:
 
-    cd ~/Library/Application Support/TextMate/Bundles
-    git clone https://github.com/desandro/textmate-bundles.git
+``` bash
+# TextMate 1
+cd ~/Library/Application Support/TextMate/
+# TextMate 2
+cd ~/Library/Application Support/Avian/
+git clone https://github.com/desandro/textmate-bundles.git Bundles
+```
 
 ## Changes per language
 
@@ -65,5 +70,22 @@ But if you'd like to give it a shot, you'll need to put this repo in your Bundle
 
 ### Markdown
 
-+ Tweaks to formatting
++ Language
+  - YAML front matter syntax highlighted
+  - GitHub triple tick code blocks syntax highlighted
+  - Additional tweaks
 
+### Mustache
+
++ Language
+  - Highlight modifer characters `#/^`
+
+### Text
+
++ Commands
+  - **Opt + Shift + W** : Remove Trailing Spaces in Selection/Document
+
+## Additional bundles to install seperately
+
++ [Liquid](https://github.com/andrew/liquid-tmbundle)
++ [SCSS](https://github.com/kuroir/SCSS.tmbundle)
