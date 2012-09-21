@@ -1,20 +1,17 @@
 # TextMate bundles
 
-Custom edits to the default TextMate bundles.
+Custom edits to the default TextMate bundles. Designed for TextMate 2.
 
 This repo is solely for my own personal use, so I can sync-up my TextMate Bundles. It's designed to modify the default bundles. Consequently, it's not interoperable, so you can't drag n' drop snippets or language tweaks. Sorry bro :(
 
 But if you'd like to give it a shot, you'll need to put this repo in your Bundles directory. Either download and copy it there, or via the command line:
 
 ``` bash
-# TextMate 1
-cd ~/Library/Application Support/TextMate/
-# TextMate 2
 cd ~/Library/Application Support/Avian/
-git clone https://github.com/desandro/textmate-bundles.git Bundles
+git clone --recursive https://github.com/desandro/textmate-bundles.git Bundles
 ```
 
-## Changes per language
+## Changes per bundle
 
 ### CSS
 
@@ -83,7 +80,9 @@ git clone https://github.com/desandro/textmate-bundles.git Bundles
 ### Text
 
 + Commands
-  - **Opt + Shift + W** : Remove Trailing Spaces in Selection/Document
+  - **Cmd + Shift + R** : Remove Trailing Spaces in Selection/Document
+
+### YAML
 
 ## Additional bundles to install seperately
 
