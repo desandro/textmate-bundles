@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>deleted</key>
+	<array>
+		<string>keyEquivalent</string>
+	</array>
+	<key>isDelta</key>
+	<true/>
+	<key>uuid</key>
+	<string>D364E829-7643-4AFF-948D-3C0D6B4EA8A4</string>
+</dict>
+</plist>
