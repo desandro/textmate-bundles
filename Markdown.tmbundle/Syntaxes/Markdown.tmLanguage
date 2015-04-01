@@ -49,7 +49,7 @@
 				<key>begin</key>
 				<string>(^|\G)([ ]{4}|\t)</string>
 				<key>name</key>
-				<string>markup.raw.block.markdown</string>
+				<string>markup.raw.markdown</string>
 				<key>while</key>
 				<string>(^|\G)([ ]{4}|\t)</string>
 			</dict>
@@ -59,7 +59,7 @@
 				<key>end</key>
 				<string>(^|\G)([ \t]+)?```</string>
 				<key>name</key>
-				<string>markup.raw.block.markdown</string>
+				<string>markup.raw.markdown</string>
 			</dict>
 		</array>
 		<key>repository.block.repository.yaml_front_matter</key>
