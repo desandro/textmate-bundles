@@ -5,10 +5,8 @@
 	<key>changed</key>
 	<dict>
 		<key>content</key>
-		<string>&lt;link rel="${1:stylesheet}" href="${2:/css/master.css}" ${4:media="${3:screen}"}&gt;</string>
+		<string>&lt;link rel="${1:stylesheet}" href="${2:/css/styles.css}" /&gt;</string>
 	</dict>
-	<key>deleted</key>
-	<array/>
 	<key>isDelta</key>
 	<true/>
 	<key>uuid</key>
