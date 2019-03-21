@@ -3,14 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>// ----- $1 ----- //</string>
+	<string>// ----- ${1} ----- //</string>
 	<key>name</key>
-	<string>title comment</string>
-	<key>scope</key>
-	<string>source.js</string>
+	<string>comment divider small</string>
 	<key>tabTrigger</key>
 	<string>//-</string>
 	<key>uuid</key>
-	<string>10965D70-D850-48EC-AA53-04E14E1C7152</string>
+	<string>9AFFABC0-EA1D-4E3C-9781-7B2391D30F77</string>
 </dict>
 </plist>
