@@ -50,7 +50,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#3387CC</string>
+				<string>#38C</string>
 			</dict>
 		</dict>
 		<dict>
@@ -102,7 +102,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#29C94C</string>
+				<string>#2C4</string>
 			</dict>
 		</dict>
 		<dict>
@@ -112,10 +112,8 @@
 			<string>support</string>
 			<key>settings</key>
 			<dict>
-				<key>fontStyle</key>
-				<string></string>
 				<key>foreground</key>
-				<string>#CC60BB</string>
+				<string>#C6B</string>
 			</dict>
 		</dict>
 		<dict>
@@ -125,10 +123,8 @@
 			<string>variable</string>
 			<key>settings</key>
 			<dict>
-				<key>fontStyle</key>
-				<string></string>
 				<key>foreground</key>
-				<string>#3E87E1</string>
+				<string>#DEF</string>
 			</dict>
 		</dict>
 		<dict>
@@ -141,7 +137,7 @@
 				<key>fontStyle</key>
 				<string>italic underline</string>
 				<key>foreground</key>
-				<string>#FD5FF1</string>
+				<string>#F5F</string>
 			</dict>
 		</dict>
 		<dict>
@@ -154,7 +150,48 @@
 				<key>background</key>
 				<string>#562D56BF</string>
 				<key>foreground</key>
-				<string>#FD5FF1</string>
+				<string>#F5F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>-----------------------------------</string>
+			<key>settings</key>
+			<dict/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Parameter</string>
+			<key>scope</key>
+			<string>variable.parameter</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#38E</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>variable.language</string>
+			<key>scope</key>
+			<string>variable.language</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#A5C</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>meta.function-call</string>
+			<key>scope</key>
+			<string>meta.function-call</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic</string>
+				<key>foreground</key>
+				<string>#AEA</string>
 			</dict>
 		</dict>
 		<dict>
@@ -279,6 +316,17 @@
 				<string></string>
 				<key>foreground</key>
 				<string>#CF6A4C</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>support.class.dom.js</string>
+			<key>scope</key>
+			<string>support.class.dom.js</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#6FF</string>
 			</dict>
 		</dict>
 		<dict>
