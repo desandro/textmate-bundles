@@ -1,6 +1,0 @@
-[submodule "SCSS.tmbundle"]
-	path = SCSS.tmbundle
-	url = https://github.com/kuroir/SCSS.tmbundle.git
-[submodule "jshint.tmbundle"]
-	path = jshint.tmbundle
-	url = git@github.com:desandro/jshint.tmbundle.git
